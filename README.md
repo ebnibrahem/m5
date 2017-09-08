@@ -10,7 +10,7 @@ PHP MVC Framework used design pattern and modern approaches of reused of code an
 #### Installing M5
 #### Files:
 1. unzip files.
-[link]https://github.com/ebnibrahem/m5/archive/master.zip
+https://github.com/ebnibrahem/m5/archive/master.zip
 #### Configuration
 
 ##### Database:
@@ -33,9 +33,9 @@ __Online environment__
 - define('mail_port',25);
 
 ##### Run Once:
-5. open url: http:\\your_url\set  [To migrate database schema tables.]
+5. open url: http://your_url/set  [To migrate database schema tables.]
 6. Next after delete file : app/_c/set.php
-7. admin area : http:\\your_url\admin
+7. admin area : http://your_url/admin
 - default user: admin
 - default pass: 1234
 
@@ -43,12 +43,8 @@ __Online environment__
 - MVC design pattern.
 - Multi-languages.
 - supported Automatic routing and routes rules.
-- supported Composer PHP dependencies management.
-- GUI to create controllers, models and views.
-
+- supported Composer PHP dependencies management  prs-4 class_map.
 - Model singleton style.
-- M5\MVC\Model::getInst("tbl","show_error",__METHOD__) : to seek target of an error in App;
-
 - M5\MVC\App::play(["url" => $_GET['url'],"status" => true]);
 - Set status as true to show bottom-application-status.
 
@@ -65,14 +61,27 @@ __Online environment__
 - upload   : upload path; you can call path with define UPLOAD_DIR
 - vendor   : main composer folder to all PHP dependencies and packages.
 
-## Getstart:
+## M5 Framework Overview:
+- M5 framework consider MVC design pattern aproach which separate programming logic (PHP files) from user interface (HTML files) and isolate databse layer form others.
 
-#### share data between controllers and views
+### Contollers
+- all controller class file are stored in __ app/_c __ and namespace M5\Controllers. Controller class name must start with Capital Letter.
+- must create Class::index($params=[]) method in each controllers class.
+##### to Share data between controllers and views e.g dynamic nav pages, application information etc.
 - add all shared data in M5\MVC\Shared::boot();
 - as $data[$key].
+
+### Models
+- M5 Model used concept of sigleton pattern, to create instant from Model :
+- M5\MVC\Model::getInst($table_name,$show_error='',__METHOD__) __METHOD__ : to seek target of an error in App;
+
+### Views
+
 
 #### Set access rule to sub-directories (Middleware)
 - add  in app/config/config.php;
 
+### Helper Libraies
 
+.. to be contiuned ..
 
