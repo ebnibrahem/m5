@@ -58,22 +58,22 @@ __Online environment__
 - libs     : classes and functions.php
 - assets   : images,js,css and fonts.
 - string   : languages string. you can change from  app/config/Config.php
-- upload   : upload path; you can call path with define UPLOAD_DIR
+- upload   : upload path; you can change from app/init by edit UPLOAD_DIR Constant.
 - vendor   : main composer folder to all PHP dependencies and packages.
 
 ## M5 Framework Overview:
 - M5 framework consider MVC design pattern aproach which separate programming logic (PHP files) from user interface (HTML files) and isolate databse layer form others.
 
 ### Contollers
-- all controller class file are stored in __ app/_c __ and namespace M5\Controllers. Controller class name must start with Capital Letter.
+- all controller class file are stored in __app/_c__ and namespace M5\Controllers. Controller class name must start with Capital Letter.
 - must create Class::index($params=[]) method in each controllers class.
 ##### to Share data between controllers and views e.g dynamic nav pages, application information etc.
 - add all shared data in M5\MVC\Shared::boot();
 - as $data[$key].
 
 ### Models
-- M5 Model used concept of sigleton pattern, to create instant from Model :
-- M5\MVC\Model::getInst($table_name,$show_error='',__METHOD__) __METHOD__ : to seek target of an error in App;
+- M5 Model used concept of singleton pattern, to create instant from Model :
+- M5\MVC\Model::getInst($table_name,$show_error='',____METHOD____) ____METHOD____ : to seek target of an error in App;
 
 ### Views
 
