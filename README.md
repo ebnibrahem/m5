@@ -1,12 +1,19 @@
 # M5
 PHP MVC application used modern approaches of reused of code and DRY.
 
-## How to Install
+##Installation
 
-### Files:
+#### Server Requirements
+- PHP >= 5.5
+- Mbstring PHP Extension
+
+#### Installing M5
+#### Files:
 1. unzip files.
 
-### Database:
+#### Configuration
+
+##### Database:
 2. create your database and set collation as utf_general_ci.
 3. open app/config/config_db.php and edit :
 __ Online__
@@ -16,7 +23,7 @@ __ Online__
 - Config::set("pass", 'PASS');
 - Config::set("port", null);
 
-### SMTP
+##### SMTP
 4. open app/config/config_mail.php and edit
 __Online environment__
 - define('mail_host','mail.mailserver.com');
@@ -25,7 +32,7 @@ __Online environment__
 - define('mail_from','info@mail.com');
 - define('mail_port',25);
 
-### Setup:
+##### run once:
 5. open url: http:\\your_url\set  [To migrate database schema tables.]
 6. Next after delete file : app/_c/set.php
 7. admin area : http:\\your_url\admin
