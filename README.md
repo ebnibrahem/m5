@@ -32,7 +32,7 @@ __Online environment__
 - define('mail_from','info@mail.com');
 - define('mail_port',25);
 
-##### run once:
+##### Run Once:
 5. open url: http:\\your_url\set  [To migrate database schema tables.]
 6. Next after delete file : app/_c/set.php
 7. admin area : http:\\your_url\admin
@@ -53,8 +53,7 @@ __Online environment__
 - Set status as true to show bottom-application-status.
 
 
-### Getstart:
-#### File structure:
+## File structure:
 
 - app/_c   : Controllers files.
 - app/_m   : Models files.
@@ -65,6 +64,8 @@ __Online environment__
 - string   : languages string. you can change from  app/config/Config.php
 - upload   : upload path; you can call path with define UPLOAD_DIR
 - vendor   : main composer folder to all PHP dependencies and packages.
+
+## Getstart:
 
 #### share data between controllers and views
 - add all shared data in M5\MVC\Shared::boot();
