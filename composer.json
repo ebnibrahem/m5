@@ -1,0 +1,22 @@
+{
+	"autoload": {
+		"psr-4" : {
+			"M5\\" : "app/",
+			"M5\\MVC\\" : "app/core",
+			"M5\\Controllers\\" : "app/_c",
+			"M5\\Models\\" : "app/_m",
+			"M5\\Library\\" : "libs/"
+		}
+	},
+
+	"require" : {
+		"phpmailer/phpmailer": "~5.2"
+	},
+
+	"config" : {
+		"preferred-install": "dist",
+		"sort-packages": true,
+		"optimize-autoloader": true
+	}
+
+}

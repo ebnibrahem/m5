@@ -1,0 +1,259 @@
+
+#moreActionsBars{
+	display: none;
+}
+
+
+#moreActions {
+	display: none;
+	cursor:pointer;
+	font-size: 26px;
+	position: absolute;
+	z-index: 11; /*#toper  z-index:10   */
+	width: 50px;
+	z-index:20;
+	right: 0;
+	top:0;
+	transition:0.5s ease-in;
+	color: #fcfcfc;
+	background: transparent;
+	text-align: center;
+	padding-top:5px;
+	border-radius: 0 0 0px 0;
+	text-shadow: 0 0 1px #000;
+}
+
+/*nav in smart phone screen*/
+
+.nav_smart{
+	width: 210px !important;
+	overflow: visible !important;
+	transition: 0.2s linear width;
+}
+
+@media screen and (max-width: 2560px){
+	html{
+		margin: auto;
+	}
+
+
+}
+
+/*Desktop*/
+@media screen and (max-width: 1024px){
+}
+
+/*tablet*/
+@media screen and (max-width: 768px){
+	body{
+		background: #f1f3f7;
+	}
+	#moreActionsBars {
+		display: block;
+	}
+	#moreActions {
+		display: block;
+	}
+
+	#searchForm{
+		margin-top: 5px;
+	}
+
+	#content{
+		float: none;
+		width: 100%;
+	}
+
+	#sidebar{
+		float: none;
+		width: 100%;
+	}
+
+	.row{
+		margin: 5px auto ;
+	}
+
+	.post2{
+		width: 98%;
+		margin: 15px auto;
+	}
+	.post2 ._lr{
+		display: block;
+		width: 98%;
+		margin: auto;
+	}
+	footer *{
+		text-align: center !important;
+	}
+	footer .alignR,
+	#toper .alignL{
+		text-align: center !important;
+	}
+
+	.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9
+	{
+		position: relative;
+		min-height: 1px;
+		padding-right: 5px;
+		padding-left: 5px;
+	}
+
+	.form-control{
+		margin: 5px auto ;
+	}
+
+	#wrapper{
+		width: 97%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.ads-flag{
+		font-size: 10px;
+		height: 52px;
+		overflow: hidden;
+	}
+
+	.ads-block{
+		height: auto;
+		max-height: auto;
+		width: 99%;
+		margin: auto;
+		margin-bottom: 15px;
+		overflow: hidden;
+	}
+
+	.nav{
+		position:absolute;
+		z-index:2;
+		top:5px;
+		left: 0px;
+		text-align: center;
+		margin: auto;
+		background:#FFF;
+		transition: 0.2s linear width;
+		width:0;
+		overflow: hidden;
+
+	}
+	.nav ul{
+		background:#FFF;
+	}
+	.nav ul li{
+		display:block;
+		border-bottom:1px solid #188;
+		color: #2cb5e8;
+		font-size: 14px !important;
+	}
+
+	.nav ul li:nth-last-child(1){
+		border:0;
+	}
+
+	.nav ul li:hover a{
+		color: #199;
+	}
+
+	.nav ul li a{
+		display: block;
+		margin: 5px;
+	}
+
+	.novo.show_novo{
+		width: 320px;
+	}
+
+	.novo{
+		width: 0;
+		overflow: hidden;
+		position: absolute;
+		top: 50px;
+		z-index:5;
+		background: #FFF;
+		transition: 0.2s linear ;
+	}
+	.novo li{
+		min-width: 100px;
+	}
+
+	.novo .active_li{
+		border-radius:0;
+		border:0;
+		border-bottom:1px solid #DDD;
+		color:#336699;
+	}
+
+	.novo ul li{display: block;padding: 10px;border-bottom: 1px solid #DDD;}
+
+
+	#bread{
+		font-size: 12px;
+	}
+
+	.searchForm{
+		width: 90%;
+		margin-top: 5px;
+	}
+
+	#searchForm input[type=search], .input{
+		padding-top: 11px;
+		padding-bottom:  10px;
+	}
+
+
+}
+
+/*smart phone large*/
+@media screen and (max-width: 425px){
+	#slider{
+		display: none;
+	}
+	#icons li{
+		min-width: auto;
+		margin: 5px;
+	}
+	#shareAds{
+		margin-top:10px !important;
+	}
+	#shareAds .rounded {
+		margin: 1px !important;
+		font-size: 16px !important;
+		width: 30px;
+		height: 30px;
+		padding: 1px;
+	}
+}
+/*smart phone medium*/
+@media screen and (max-width: 375px){
+	#icons .fa{
+		font-size: 20px;
+	}
+
+	.ads-block .tb_{
+		float: none;
+		width: 100%;
+	}
+
+	.ads-block{
+		height: auto;
+	}
+
+	.ads-block .top_{
+		height: 100px;
+	}
+
+	.ads-block .top_ img{
+		max-height: 100px;
+	}
+
+}
+
+/*smart phone small*/
+@media screen and (max-width: 320px){
+	#icons li{
+		margin: 5px;
+	}
+
+}
+
+

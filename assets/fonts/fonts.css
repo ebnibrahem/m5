@@ -1,0 +1,47 @@
+@font-face{
+	font-family:'Raleway';
+	font-style:normal;
+	font-weight:400;
+	src:url('Raleway-Regular.ttf');
+}
+
+
+@font-face{
+	font-family:'aileron';
+	font-style:normal;
+	font-weight:400;
+	src:url('aileron/aileron_light.woff');
+}
+
+
+@font-face {
+	font-family: 'aileronbold_italic';
+	src: url('http://www.spendthrift.me/themelogic/fonts/aileron-bold-webfont.eot');
+	src: url('http://www.spendthrift.me/themelogic/fonts/aileron-bold-webfont.eot?#iefix') format('embedded-opentype'),
+	url('http://www.spendthrift.me/themelogic/fonts/aileron-bold-webfont.woff') format('woff'),
+	url('http://www.spendthrift.me/themelogic/fonts/aileron-bold-webfont.ttf') format('truetype'),
+	url('http://www.spendthrift.me/themelogic/fonts/aileron-bold-webfont.svg#aileronbold') format('svg');
+	font-weight: normal;
+	font-style: normal;
+
+}
+
+@font-face{
+	font-family:'neo';
+	font-style:normal;
+	font-weight:400;
+	src:url('neo/NeoSansArabic.eot');src:url('neo/NeoSansArabic.eot?#iefix') format('embedded-opentype'),url('neo/NeoSansArabic.woff') format('woff'),url('neo/NeoSansArabic.ttf') format('truetype')
+}
+
+@font-face{
+	font-family:"helvetica";
+	src:url(helvetica/HelveticaNeueW23-Reg.eot);
+	src:url(helvetica/HelveticaNeueW23-Reg.woff) format("woff"),url(helvetica/HelveticaNeueW23-Reg.ttf) format("truetype"),url(font/HelveticaNeueW23-Reg.svg#HelveticaNeueLTArabic55Roman) format("svg");
+	font-weight:normal;font-style:normal;
+}
+
+@font-face{
+	font-family:'bukra';
+	font-style:normal;
+	src:url('bukra/29ltbukraregular.ttf');
+}
