@@ -1,5 +1,5 @@
 # M5
-PHP MVC application used modern approaches of reused of code and DRY.
+PHP MVC Framework used design pattern and modern approaches of reused of code and DRY (dont repeat yourself).
 
 ## Installation
 
