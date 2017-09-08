@@ -39,7 +39,7 @@ __Online environment__
 - default user: admin
 - default pass: 1234
 
-### Features:
+## Features:
 - MVC design pattern.
 - Multi-languages.
 - supported Automatic routing and routes rules.
