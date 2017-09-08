@@ -1,7 +1,7 @@
 # M5
 PHP MVC application used modern approaches of reused of code and DRY.
 
-##Installation
+## Installation
 
 #### Server Requirements
 - PHP >= 5.5
