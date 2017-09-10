@@ -91,8 +91,8 @@ class Router
 		return self::$Directory;
 	}
 
-	public static function getController(){
-		return self::$controller;
+	public static function getController($dir=''){
+		return $dir ? self::$Directory."/".self::$controller : self::$controller;
 	}
 
 	public static function getMethod(){
