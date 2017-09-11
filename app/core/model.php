@@ -13,14 +13,14 @@ class Model
     protected static $DB;
     protected static $sql;
 
-    protected static  $error;
+    protected static  $db_error;
 
     public $total = 0;
     public $offset = 30;
     public $pages = 0;
 
     private static $tbl;
-    private static $set;
+    private static $show_error;
     private static $target;
 
     public static $cls;
@@ -41,8 +41,8 @@ public static function getInst($tbl='',$show_error=false,$target=false)
         self::$inst = new $class($show_error);
     }
 
-    self::$set =  $show_error ;
-    self::$target =  $target ;
+    self::$show_error =  $show_error ;
+    self::$target     =  $target ;
 
     return self::$inst;
 }
@@ -51,7 +51,7 @@ public static function getInst($tbl='',$show_error=false,$target=false)
 * Connect To Database
 *
 */
-private function __construct($show_error=false)
+private function __construct()
 {
     $db['host']       =  Config::get("host");
     $db['user']       =  Config::get("user");
@@ -74,17 +74,25 @@ private function __construct($show_error=false)
 * Show errors if occurred
 *
 */
-public function error(){
+public function getError(){
 
-    if(self::$error){
+    // ve("show_error = ".self::$show_error);
+
+    if(self::$show_error){
+
         echo "<pre dir='ltr'>";
-        foreach (self::$error as $key => $error) {
-            pre("<b>DB</b>: ".__METHOD__."[  ".self::$target." ] <u>".$error."</u>",'left','ltr','#F33000');
+        if(self::$db_error){
+            foreach (self::$db_error as $key => $error) {
+                pre("<b>- DB</b>: ".__METHOD__."[  ".self::$target." ] <u>".$error."</u>",'left','ltr','#F33000');
              // trigger_error(self::$target." ".$error) ; //set as php runtime error.
+            }
+        }else{
+            echo "no Errors";
         }
         echo "</pre>";
     }
 }
+
 
 /**
 * Select From table ['tbl'=>tab_name]
@@ -336,10 +344,9 @@ public function query($sql,$printQuery=false,$printQueryTarget=false)
 
     if(!self::$DB->error){
         return self::$DB->query($sql) ;
-    }
-    else{
-        self::$error[] = self::$DB->error;
-        return self::$set ? $this->error() : '';
+    }else{
+        self::$db_error[] = self::$DB->error;
+        return self::$show_error ? $this->getError() : null;
     }
 }
 
@@ -415,11 +422,12 @@ function update($args=[],$id,$tbl='',$printQuery=FALSE)
 * $variable array
 * $tbl string table name
 */
-function insert(array $variable=[],$tbl='',$printQuery=FALSE,$c_at_label='')
+public function insert(array $variable=[],$tbl='',$printQuery=FALSE,$c_at_label='')
 {
     if(!$variable){
         pa( msg("<b>".$tbl." Error : </b>Missing  fieldset!!",'','ltr'),"exit");
     }
+
     $tbl = !$tbl ? self::$tbl : $tbl;
     $tbl = !$tbl ? pure_class(get_called_class()) : $tbl;
 
@@ -440,12 +448,13 @@ function insert(array $variable=[],$tbl='',$printQuery=FALSE,$c_at_label='')
         pre($sql,'','ltr','#00C');
     }
 
-    if($this->query($sql)){
-        return 1;
+    if( $this->query($sql) ){
+        return true ;
     }else{
-        /* pre(__METHOD__." <b>".self::$DB->error."</b>",'','ltr','#F33AAA');*/
-        return 0;
+        $this->query($sql);
+        return null;
     }
+    /* pre(__METHOD__." <b>".self::$DB->error."</b>",'','ltr','#F33AAA');*/
 }
 
 
