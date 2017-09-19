@@ -7,10 +7,10 @@
 */
 class App
 {
-	protected static $router;
-	protected static $error = 'null';
-	protected static $notes = [];
-	protected static $showSummary;
+	protected static   $router;
+	protected static   $error = 'null';
+	protected static   $notes = [];
+	protected static   $showSummary;
 	private   static   $E404;
 	private   static   $disabled_main_app = null;
 	private   static   $disabled_api_app = null;
@@ -270,4 +270,15 @@ class App
 		require_once 'app/routes.php';
 		Route::play(self::$showSummary);
 	}
+
+	/**
+	 * Return false when file not found.
+	 *
+	 * @return boolean
+	 */
+	public static function getTarget(){
+		return (self::$E404) ? false : true;
+
+	}
+
 }

@@ -16,6 +16,7 @@ use M5\MVC\Model;
 class Mic extends BaseController
 {
 	private $tbl = "mic";
+	private $tbl_label = "setting";
 	Const FILES_PATH = "assets/images/";
 	function __construct()
 	{
@@ -25,7 +26,7 @@ class Mic extends BaseController
 		$this->model = Model::getInst($this->tbl);
 
 		/*breadcrumb*/
-		$this->data["title"] = str(pure_class(__CLASS__));
+		$this->data["title"] = str(pure_class($this->tbl_label));
 		$this->data["bread"] = Bread::create( [$this->data["title"]=>"#"] );
 
 	}
@@ -37,7 +38,7 @@ class Mic extends BaseController
 		$this->update();
 
 		/*view*/
-		$this->getView()->template("admin/mic_cp_view.php",$this->data,$templafolder="admin");
+		// $this->getView()->template("admin/mic_cp_view.php",$this->data,$templafolder="admin");
 	}
 
 
@@ -48,6 +49,8 @@ class Mic extends BaseController
 
 
 	private function update(){
+
+		/* update website information*/
 		if($_POST['micUpdateBtn']){
 			extract($_POST);
 			// pa();
@@ -82,17 +85,18 @@ class Mic extends BaseController
 				$msg = msg(str("change")." ".str("logo"),"alert alert-info");
 				Session::setWink("msg",$msg);
 
-				page::location( url('admin/mic'),"die" );
+				page::location( $page );
 			}
 
 			if($this->model->update($mic_args," && 1 = 1 ",null,'1')){
-				page::location( url('admin/mic') );
+				page::location( $page );
 			}else{
 				echo
 				$this->model->error();
 			}
 			// pa('','eeeee');
 		}
+
 	}
 
 

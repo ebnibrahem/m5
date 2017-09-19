@@ -1,5 +1,14 @@
 <div id="content">
 
+	<div id="tabs">
+		<ul class="inline-ul">
+			<li class="tabs_item" data-tab="mic" ><?=s('mic')?></li>
+			<li class="tabs_item" data-tab="security"><?=s('security')?></li>
+		</ul>
+	</div>
+	<div class="hr b_base br"></div>
+
+
 	<?php $record = $data['record'] ?>
 
 	<?php //pa($record) ?>

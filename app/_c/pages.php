@@ -89,7 +89,7 @@ class Pages extends BaseController
 		$this->data["bread"] = Bread::create( [str("pages")=>"pages", $this->data["title"]=>"#"],null );
 
 				//seo
-		$this->request->SEO = $r["name"];
+		$this->request->SEO = $r["tags"];
 		$this->request->SEO_DESC = clean::sqlInjection($r["content"]);
 		$this->request->SEO_IMG = LOGO;
 	}

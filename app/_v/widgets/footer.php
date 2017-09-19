@@ -15,10 +15,10 @@
 					<?php if ($categories) :?>
 
 						<?php foreach ($categories as $part) : ?>
-							<li>
+							<li class="blk" style="border-bottom: 1px solid #888">
 								<a href="<?= url('blogs/part/'.$part['ID'].M5\Library\Axe::url($part['name'])) ?>">
-									<img class="radiused" src="<?= LOADING ?>" data-src="<?= $part['ava'] ?>" alt="<?= $part['name'] ?>" width="70" />
-									<b class="bold"><?= $part['name']  ?></b>
+									<img class="radiused" src="<?= LOADING ?>" data-src="<?= $part['ava'] ?>" alt="<?= $part['name'] ?>" width="50" />
+									<b class="bold"><?= $part['name']  ?></b>         <span class="label label-info"><?=$part['total']?></span>
 								</a>
 							</li>
 						<?php endforeach ?>

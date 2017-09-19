@@ -30,7 +30,7 @@ class Set
 
 	/* Sql Injection DB */
 	private function setup(){
-		$db = Model::getInst();
+		$db = Model::getInst('users',"show errors",__METHOD__);
 
 	#users
 		if($db->query("
@@ -50,7 +50,7 @@ class Set
 			`u_at` VARCHAR(20) ,
 			`st`  INT
 			)"))
-			echo '<div># users created<br /></div>'; else echo '<div>(!) users table error : '.$db->error().' ;<br /></div>';
+			echo '<div># users created<br /></div>'; else echo '<div>(!) users table error : '.$db->getError().' ;<br /></div>';
 
 		$seed_args = ["name"=>site_name, "user"=>"admin", "is_admin"=>1, "pass"=> Hash::MD5("1234")];
 
@@ -69,7 +69,7 @@ class Set
 			)
 			echo "<div># Roles table created!</div>";
 		else
-			echo "<div>!) Roles table error : ".$db->error()."</div>";
+			echo "<div>!) Roles table error : ".$db->getError()."</div>";
 
 	#passport to users
 		if($db->query("CREATE TABLE IF NOT EXISTS passport(
@@ -80,7 +80,7 @@ class Set
 			)
 			echo "<div># passport table created!</div>";
 		else
-			echo "<div>!) passport table error : ".$db->error()."</div>";
+			echo "<div>!) passport table error : ".$db->getError()."</div>";
 
 
 	#Tree categories
@@ -100,7 +100,7 @@ class Set
 
 			)"))
 
-			echo '<div># Tree created<br /></div>'; else echo '<div>(!) Tree table error : '.$db->error().' ;<br /></div>';
+			echo '<div># Tree created<br /></div>'; else echo '<div>(!) Tree table error : '.$db->getError().' ;<br /></div>';
 
         #Records categories
 		if($db->query("
@@ -116,7 +116,7 @@ class Set
 
 			)"))
 
-			echo '<div># Records created<br /></div>'; else echo '<div>(!) Records table error : '.$db->error().' ;<br /></div>';
+			echo '<div># Records created<br /></div>'; else echo '<div>(!) Records table error : '.$db->getError().' ;<br /></div>';
 
 
 	# MIC-applicaiotn information
@@ -133,14 +133,14 @@ class Set
 			`u_at` varchar(200) ,
 			st INT default 1
 			) "))
-			echo '<div># mic created<br /></div>'; else echo '<div>(!) mic table error : '.$db->error().' ;<br /></div>';
+			echo '<div># mic created<br /></div>'; else echo '<div>(!) mic table error : '.$db->getError().' ;<br /></div>';
 
 		$mic_args = [
 		"name" => "MAKE BY MIC",
-		"description" => Config::get("site_name"). "\n". Config::get("site"),
+		"description" => Config::get("site_name"). "\n". url(),
 		"keywords" => Config::get("site_name"),
-		"email" => "info@".Config::get("HOST"),
-		"tel" => "",
+		"email" => "info@".HOST.(HOST =="localhost" ? "ikhrbshat.com" : ""),
+		"tel" => "00249915102431",
 		];
 
 		/* Insert default Applicaiotn info*/
@@ -161,7 +161,7 @@ class Set
 			PRIMARY KEY  (`id`)
 			)
 			");
-		if($audience) echo '<div># audience created<br /></div>'; else echo '<div>(!) audience table error : '.$db->error().' ;<br /></div>';
+		if($audience) echo '<div># audience created<br /></div>'; else echo '<div>(!) audience table error : '.$db->getError().' ;<br /></div>';
 
 
 		#Notifications
@@ -177,7 +177,7 @@ class Set
 			`st` INT
 			)
 			");
-		if($notifications) echo '<div> # notifications  created!</div>'; else echo "<div> ! notifications table error : ".$db->error()."</div>";
+		if($notifications) echo '<div> # notifications  created!</div>'; else echo "<div> ! notifications table error : ".$db->getError()."</div>";
 
 
  	#pages
@@ -201,7 +201,7 @@ class Set
 			st INT      default 1
 			) "))
 
-			echo '<div># pages created<br /></div>'; else echo '<div>(!) pages table error : '.$db->error().' ;<br /></div>';
+			echo '<div># pages created<br /></div>'; else echo '<div>(!) pages table error : '.$db->getError().' ;<br /></div>';
 
 
 	#preferences
@@ -216,7 +216,7 @@ class Set
 			) {
 			echo "<div># preferences table created!</div>";
 	} else {
-		echo "<div>#preferences table error: " . $db->error() . "</div>";
+		echo "<div>#preferences table error: " . $db->getError() . "</div>";
 	}
 
 	#types
@@ -238,7 +238,7 @@ class Set
 		) {
 		echo "<div># types table created!</div>";
 } else {
-	echo "<div>#types table error: " . $db->error() . "</div>";
+	echo "<div>#types table error: " . $db->getError() . "</div>";
 }
 
 
@@ -249,7 +249,7 @@ if($db->query("
 	`BETA`     VARCHAR( 225 )  ,
 	`part_id`  VARCHAR(100)  ,
 	`child_id` VARCHAR(100)  ,
-	`user_id`  VARCHAR( 225 )  ,
+	`user_id`  INT  ,
 	`name`     VARCHAR( 225 )  ,
 	`content`  LONGTEXT  ,
 	`v`        INT  ,
@@ -264,7 +264,16 @@ if($db->query("
 {
 	echo '<div># blogs blog table created!</div>';
 } else {
-	echo '<div> (!) blogs blog table  error :' . $db->error() . '</div>';
+	echo '<div> (!) blogs blog table  error :' . $db->getError() . '</div>';
+}
+
+/* Default Pages*/
+$pages = ["about","contact"];
+
+foreach ($pages as $key => $p) {
+	if( !$db->num_rows("pages"," && slug ='{$pages[$key]}' ")){
+		$db->insert(["name" =>$pages[$key], "content" =>$pages[$key]." content editable from cpanel", "slug" =>$pages[$key],"st"=>1],"pages");
+	}
 }
 
 

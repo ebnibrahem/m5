@@ -13,7 +13,7 @@ use M5\Library\Up;
 use M5\Library\lens;
 use M5\Library\Pen;
 
-use M5\Models\Blogs_Model as Record;
+use M5\Models\Blogs_Model;
 
 class Blogs extends BaseController
 {
@@ -29,7 +29,7 @@ class Blogs extends BaseController
 		$this->request->editor = 1;
 
 		/*instant model : Singleton Style*/
-		$this->model = new Record();
+		$this->model = new Blogs_Model($this->tbl);
 
 		/*breadcrumb*/
 		$this->data["title"] = str($this->class_label);
@@ -78,7 +78,7 @@ class Blogs extends BaseController
 	private function all(){
 		$page[0] = $count  = $_GET['page'];
 		$page[1] = $offset =  32;
-		$sort = "";
+		$sort = $_GET["sort"] ? $_GET["sort"]." ".$_GET["by"] : "";
 
 		$cond = "";
 		$paggingUrl = "";
@@ -113,6 +113,9 @@ class Blogs extends BaseController
 		$this->data["records"] = $r["data"];
 		$this->data["meta"] = $r['meta'];
 		$this->data['meta']['paggingUrl'] = $paggingUrl;
+
+		/*view style*/
+		$_GET['view'] ? Session::set("view_style",$_GET['view']) : "";
 	}
 
 	/**
@@ -122,23 +125,15 @@ class Blogs extends BaseController
 	 */
 	private function details($id){
 		$this->request->form = "update";
-		$r = $this->model->table()->where(" && ID = $id ")->fetch(["index"=>"first"]);
-				//$r = $this->model->_one($id);
+		$r = $this->model->_one($id);
 		// pa($r);
 
-		/*get images*/
-		$record_folder = 'upload/blogs/'.$r['BETA'].'/';
-		$images = lens::cornea($record_folder,url().$record_folder);
-
-
-		if($r){
-			/*get images*/
-			$images = get_uploads($record_folder,'file');
-			$r['images'] = $images;
-			$r['ava'] = !$images[0] ? ADS_LOGO : $images[0];
-		}
-
 		$this->data["theRecord"] = $r;
+
+		$categories_sub = parent::branch($r['part_id'],0);
+
+		$this->data['categories_sub'] = $categories_sub;
+
 
 		/*bread*/
 		$this->data["title"] = $r["name"];
@@ -171,21 +166,21 @@ class Blogs extends BaseController
 
 
  			if(!$name || !$content || !$part_id){
- 				$msg = msg( str("input_error"),'alert alert-danger');
+ 				$msg = msg( s("input_error"),'alert alert-danger');
  				Session::setWink("msg",$msg);
  				Page::location( url( $this->fail_page) );
  			}
 
  			/* Check repeat  */
-			// $sql_ck = " SELECT * FROM blogs WHERE  1 && ref_id = '$ref_id' ";
+ 			$repeat_cond = " && name = '$name' ";
 
-			// if( $this->model->query($sql_ck)->num_rows ){
+ 			if( $this->model->num_rows('',$repeat_cond,1) ){
 
-			// 	$msg = msg("الكود المرجعي الذي ادخلته موجود مسبقاً ",'alert alert-warning');
-			// 	Session::setWink("msg",$msg);
-			// 	Page::location( url( $this->fail_page) );
-			// 	die();
-			// }
+ 				$msg = msg($name." ".s('its_repeated'),'alert alert-warning');
+ 				Session::setWink("msg",$msg);
+ 				Page::location( url( $this->fail_page) );
+ 				die();
+ 			}
 
  			/* blogs folder */
  			$record_folder = 'upload/blogs/'.$BETA;
@@ -217,6 +212,7 @@ class Blogs extends BaseController
 
  			"name"    => $name,
  			"part_id" => $part_id,
+ 			"child_id" => $child_id,
  			"st"      => $st,
  			"content" => $content,
  			"tags"    => $tags,
@@ -279,6 +275,7 @@ class Blogs extends BaseController
 			$args = [
 			"name"    => $name,
 			"part_id" => $part_id,
+			"child_id" => $child_id,
 			"st"      => $st,
 			"content" => $content,
 			"tags"    => $tags,
@@ -286,10 +283,10 @@ class Blogs extends BaseController
 			"u_at"     => R_DATE_LONG,
 			];
 
-			if($this->model->update($args," && `ID` = '$id' "))
+			if($this->model->update($args,$id,$this->tbl))
 			{
 				Session::setWink("msg", msg(string("update_success"),"alert alert-success") );
-				page::location($page);
+				Page::location($page);
 				die();
 			}
 		}

@@ -25,7 +25,7 @@
 							<img src="<?= LOADING ?>" data-src="<?= $part['ava'] ?>" alt="<?= $part['name']  ?>">
 
 						</div>
-						<h2 class="bold"><?= $part['name']  ?> <im class="small"><?= C::_sum2(["part_id" => $part['ID'] ],'blogs',0)?></im></h2>
+						<h2 class="bold"><?= $part['name']  ?> <im class="small"><?=$part['total'] ?></im></h2>
 					</a>
 				</div>
 			<?php endforeach ?>

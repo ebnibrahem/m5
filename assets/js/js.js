@@ -3,11 +3,6 @@ $(document).ready(function($) {
 	sh = screen.height,
 	landHight =parseInt(sh);
 
-	if( $("body").data('pageflag') == "index" ){
-		$("#land").css({"height":landHight+"px"});
-	}
-
-
 	$("#bird").click(function () {
 		$("html, body").animate({
 			scrollTop: sh-200

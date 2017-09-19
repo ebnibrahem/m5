@@ -8,8 +8,10 @@ class Blogs_Model extends BaseModel
 
 	function __construct($tbl='')
 	{
+		$this->tbl = $tbl;
+
 		// $this->model = BaseModel::getInst($this->tbl);
-		parent::getInst($this->tbl);
+		parent::getInst($tbl);
 	}
 
 	/**
@@ -31,7 +33,7 @@ class Blogs_Model extends BaseModel
 			)
 		->join(['tbl'=>['users','blogs'],  'on'=> 'users.ID = blogs.user_id', ])
 		->join(['tbl'=>['tree','blogs'],  'on'=> 'tree.ID = blogs.part_id', ],'LEFT')
-		->join(['tbl'=>['tree as childPart','blogs'],  'on'=> 'tree.ID = blogs.child_id', ],'LEFT')
+		->join(['tbl'=>['tree as childPart','blogs'],  'on'=> 'childPart.ID = blogs.child_id', ],'LEFT')
 
 		->where($cond)
 		->order($sort)
@@ -50,12 +52,6 @@ class Blogs_Model extends BaseModel
 		$r = $this->_all();
 
 		$this_folder = 'upload/blogs/'.$r['BETA'].'/';
-
-		/* Create Empty folder if not created before*/
-		// mkdir($this_folder,0777,TRUE);
-		// mkdir($this_folder_atachment,0777,TRUE);
-		// mkdir($this_folder_video,0777,TRUE);
-
 
 		if($r){
 			/*get images*/

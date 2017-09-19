@@ -7,7 +7,7 @@ use M5\Library\Session;
 
 <?php require _WID.'_head.php'; ?>
 
-<body data-url="<?= URL ?>" data-pageFlag="<?= APP::getRouter()->getController(); ?>" data-current_url="<?= page::url() ?>">
+<body data-url="<?= URL ?>" data-pageFlag="<?= strtolower(APP::getRouter()->getController() ); ?>" data-current_url="<?= page::url() ?>">
 
 	<?php require view() . 'widgets/cdn_js.php'; ?>
 	<script src="<?= assets('js/js.js'.CACHE_VAR) ?>"></script>

@@ -61,7 +61,7 @@ function str($key='',$charset=''){
  * Call $GLOBALS key multi | individual.
  *
  */
-function s($keys,$separator=""){
+function s($keys,$separator="",$replace=null){
 	$separator = !$separator ? " " : $separator;
 
 	if( is_array($keys) === TRUE ){
@@ -408,11 +408,11 @@ function watermark(array $args){
 
 /**
  * convert http url to file system format
- * @param  [type] $http_url [description]
- * @return [type]           [description]
+ * @param  [type] $http_url
+ * @return path.
  */
 function dir_format($http_url){
-	$dir = DIR;
+	$dir = ROOT;
 	$site = site;
 
 	$path =  str_replace("$site", "", $http_url);
@@ -422,6 +422,19 @@ function dir_format($http_url){
 	else
 		return null;
 
+}
+
+/**
+ * convert file system to http url format
+ * @param  [type] $http_url
+ * @return url
+ */
+function http_format($path){
+	$dir = ROOT;
+	$site = site;
+
+	$url =  str_replace($dir, "", $path);
+	return $url;
 }
 
 

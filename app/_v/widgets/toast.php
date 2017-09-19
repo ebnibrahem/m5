@@ -9,7 +9,7 @@
             <div id="MIC_toast_close"><i class="fa fa-remove"></i></div>
         </div>
         <div id="MIC_toast_msg">
-            <span class="toast"></span>
+            <span class="toast"><i class="fa fa-spin fa-spinner"></i></span>
             <?php
             if($msg){
                 if(is_array($msg) == "1")
@@ -30,7 +30,7 @@
             }
         });
         $("#MIC_toast_close").click(function() {
-            $("#MIC_toast").removeClass('showToast');            
+            $("#MIC_toast").removeClass('showToast');
         });
 
 //toast core

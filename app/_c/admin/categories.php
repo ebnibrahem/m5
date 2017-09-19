@@ -23,6 +23,8 @@ class Categories extends BaseController
 		/*instant model : Singleton Style*/
 		$this->model = Model::getInst($this->tbl);
 
+		$this->request->formAction = "admin/categories/";
+
 		/*breadcrumb*/
 		$this->data["title"] = str($this->class_label);
 		$this->data["bread"] = Bread::create( [$this->data["title"]=>"#"] );
@@ -116,9 +118,6 @@ class Categories extends BaseController
 			$roles = Session::get("roles");
 			Auth::valid($roles,[1]);
 
-	// 		pa(0,1);
-
-
 			$parent = $rank == "parent" ? "0" : $parent;
 
 			if(!$name){
@@ -202,21 +201,50 @@ class Categories extends BaseController
 		}
 	}
 
-		/**
+	/**
 	 * Delete one|more record
 	 *
 	 * $id int record id
 	 */
-		public function delete($id){
-			/*Authentication*/
-			$roles = Session::get("roles");
-			Auth::valid($roles,[3]);
+	public function action(){
+		/*Authentication*/
+		$roles = Session::get("roles");
+		Auth::valid($roles,[3]);
+		if($_POST['actionsBtn']){
+			extract($_POST);
 
-			$page = url("admin/pure_class(__CLASS__)");
-			if( $this->model->delete($id) ){
-				Page::location($page);
+
+			if(!$ID[0]){
+				$msg = pen::msg("حدد الحقول اولاً");
+				session::setWink("msg",$msg);
+				page::location($page);
 				die();
 			}
 
+			// pa($ID);
+
+			/* Delete*/
+			if($action == "delete"){
+				$ides = implode(",", $ID);
+
+				if( $this->model->delete(" && ID IN ($ides)",'',1) ){
+
+					/*delete blogs*/
+					$del_blogs_cond = " && part_id IN ($ides) ";
+					$this->model->delete($del_blogs_cond,"blogs",1);
+
+					$msg = pen::msg( s('delete_success') );
+					session::setWink("msg",$msg);
+					Page::location($page);
+					die();
+				}
+			}
+
+			/* update [st]*/
 		}
+
 	}
+
+
+
+}

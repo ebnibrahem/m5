@@ -11,7 +11,7 @@
 				<input type="text" name="name" value="<?= $record['name'] ?>" autofocus>
 			</div>
 		</content>
-		<content class="col-md-4">
+		<content class="col-md-2">
 			<div class="form-group p320">
 				<label for=""><?= string("st")?></label>
 				<select name="st">
@@ -20,11 +20,11 @@
 				</select>
 			</div>
 		</content>
-		<content class="col-md-4">
+		<content class="col-md-3">
 
 			<div class="form-group">
-				<label for=""><?= string("categories")?></label>
-				<select name="part_id" class="form-control" >
+				<label for=""><?=s(['categories','home'])?></label>
+				<select name="part_id" class="form-control select_pc " data-child_flag="add_child_here" data-fetch_flag="<?=$part_id?>">
 					<option value=""><?= s(['categories','choose'],"- ")?></option>
 					<?php if ($data['categories']): ?>
 						<?php foreach ($data['categories'] as $key => $categ): ?>
@@ -36,6 +36,18 @@
 				<a href="<?=url('admin/categories')?>" class="label label-info"><?=s(['categories','add_new'],"- ")?></a>
 			</div>
 
+		</content>
+		<content class="col-md-3">
+			<label for=""><?=s(['categories','sub'])?></label>
+			<select id="add_child_here" name="child_id" class="form-control">
+				<option value=""><?= s(['sub','choose'],"- ")?></option>
+				<?php if ($data['categories_sub']): ?>
+					<?php foreach ($data['categories_sub'] as $key => $categ): ?>
+						<?php $selected = ($record['child_id'] == $categ['ID']) ? 'selected' : '' ?>
+						<option value="<?= $categ['ID'] ?>" <?= $selected?> > <?= $categ['name'] ?> </option>
+					<?php endforeach ?>
+				<?php endif ?>
+			</select>
 		</content>
 	</section>
 
@@ -83,7 +95,7 @@
 
 	<h5>
 		<hr>
-		<input type="radio" name="page" id="page1" value="<?=page::url();?>"  checked >  <label class="hand" for="page1"><?= str("update")?></label>
+		<input type="radio" name="page" id="page1" value="<?=Page::url();?>"  checked >  <label class="hand" for="page1"><?= str("update")?></label>
 		<input type="radio" name="page" id="page2" value="<?= $this->formAction?>" > <label class="hand" for="page2"><?= str("update")?> + <?= str("back")?></label><br />
 	</h5>
 	<div>

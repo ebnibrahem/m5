@@ -135,41 +135,45 @@
 					<legend> <?= string('categories') ?> </legend>
 				<?php endif ?>
 
-				<table class="table table-hover center" >
-					<thead class="">
-						<tr>
-							<th class="alignC">#</th>
-							<th class="alignC"><?= str('Name')?></th>
-							<!-- <th class="alignR"><i class="fa fa-check mark hand"></i></th> -->
-						</tr>
-					</thead>
-					<tbody>
-						<?php $c=1; foreach ($records as $part): extract($part); ?>
-						<tr>
-							<td><?=$c?></td>
-							<td><a href="<?=url('admin/categories/').$ID?>"><?=$name?></a></td>
+				<form action="<?=url($this->formAction)?>action" method="post">
+					<table class="table table-hover center" >
+						<thead class="">
+							<tr>
+								<th class="alignC">#</th>
+								<th class="alignC"><?= str('ava')?></th>
+								<th class="alignC"><?= str('Name')?></th>
+								<th class="alignC"><i class="fa fa-check mark hand"></i></th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php $c=1; foreach ($records as $part): extract($part); ?>
+							<tr>
+								<td><?=$c?></td>
+								<td><img src="<?=$ava?>" alt="<?=$name?>" style="max-width: 70px"></td>
+								<td><a href="<?=url('admin/categories/').$ID?>"><?=$name?></a></td>
 
-							<!-- <td><input class="multy" type="checkbox" name="ID[]" value="<?=$ID?>" ></td> -->
-						</tr>
-						<?php $c++; endforeach ?>
-					</tbody>
+								<td><input class="multy" type="checkbox" name="ID[]" value="<?=$ID?>" ></td>
+							</tr>
+							<?php $c++; endforeach ?>
+						</tbody>
 
-					<!-- <thead class="f_white">
-						<tr>
-							<th>#</th>
-							<th>Nae</th>
-							<th>Avatar</th>
-							<th>
-								<select name="action" class="small form-control">
-									<option value="delete">Delete</option>
-								</select>
-								<input class="btn btn-warning confirm" type="submit" value="Excute" name="actionsBtn">
-								<input type="hidden" value="<?=page::url()?>" name="page">
-							</th>
-						</tr>
-					</thead> -->
+						<thead class="">
+							<tr>
+								<th colspan="3"> </th>
+								<th>
+									<div class="form-inline">
+										<select name="action" class="small form-control p100">
+											<option value="delete"><?= s('delete')?></option>
+										</select>
+										<input type="hidden" value="<?=page::url()?>" name="page">
+										<input class="btn btn-primary confirm auto_margin" data-confirm="سيتم حذف القسم والسجلات المرتبطة به ايضاً" type="submit" value="<?= s('ok')?>" name="actionsBtn">
+									</div>
+								</th>
+							</tr>
+						</thead>
 
-				</table>
+					</table>
+				</form>
 			<?php endif;?>
 		</section>
 	</div>

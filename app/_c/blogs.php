@@ -70,7 +70,7 @@ class Blogs extends BaseController
 	 */
 	private function all($cond=""){
 		$page[0] = $count  = $_GET['page'];
-		$page[1] = $offset =  2;
+		$page[1] = $offset =  5;
 		$sort = "";
 
 		$cond = "";
@@ -104,10 +104,12 @@ class Blogs extends BaseController
 		if ($_GET['part_id'] || $_GET['q']) {
 
 			$query_string = Clean::sqlInjection($_GET['q']);
-			$part_id = Clean::sqlInjection($_GET['part_id']);
+			$part_id      = Clean::sqlInjection($_GET['part_id']);
+			$child_id     = Clean::sqlInjection($_GET['child_id']);
 
 			$cond .= " &&  ( blogs.name LIKE '%$query_string%'   ) ";
 			$cond .= $part_id ? " &&  ( blogs.part_id = '$part_id'   ) " : "";
+			$cond .= $child_id ? " &&  ( blogs.child_id = '$child_id'   ) " : "";
 
 			$_string = $query_string;
 			$_string .= $part_id ? " ".s("categories")." ".$part_id : "" ;
@@ -115,7 +117,7 @@ class Blogs extends BaseController
 			//bread ^^
 			$title = str('search_result')." : ".$_string;
 			$this->data['title'] = $title;
-			$this->data['bread'] = Bread::create( [string("blogs")=>"admin/blogs", $this->data['title']=>"#"],'' );
+			$this->data['bread'] = Bread::create( [string("blogs")=>"blogs", $this->data['title']=>"#"],'' );
 
 			/*append after ?page?1&q=*/
 			$paggingUrl .= '&q='.$_GET['q'];
@@ -137,8 +139,6 @@ class Blogs extends BaseController
 	 */
 	private function details($id){
 
-		// $this->model->set("printQuery");
-
 		if(preg_match('/^[1-9]-/', $id)){
 			$id = Clean::int($id);
 			$r = $this->model->_one($id);
@@ -147,7 +147,6 @@ class Blogs extends BaseController
 			$cond = "&& LOWER(blogs.name) LIKE LOWER('%$id%')";
 			$r = $this->model->_one(null,$cond);
 		}
-
 
 		/*pa($r);*/
 		$this->data["theRecord"] = $r;
@@ -158,27 +157,54 @@ class Blogs extends BaseController
 			$this->data["title"] = $r["name"];
 			$this->data["bread"] = Bread::create( [str("blogs")=>"blogs", $this->data["title"]=>"#"], null );
 
-		//seo
+			//seo
 			$this->request->SEO = $r["name"];
 			$this->request->SEO_DESC = clean::sqlInjection($r["content"]);
 			$this->request->SEO_IMG = $r["ava"];
 
 			/*related ads*/
-			$cond = " && (ID != '$id' && part_id = '{$r["part_id"]}' )";
-			$related = "??";
-			$this->data["related"] = $related;
+			// $this->model->set("printQuery");
+			$this->model->set("one",null);
+			$cond = " && (blogs.part_id = '{$r["part_id"]}' ) ";
+			$this->model->set("cond",$cond);
+			$related = $this->model->_all($cond,[0,5],$sort);
+			$this->data["related"] = $related['data'];
 
 			/* has been shown */
 			$v = $r['v']+1;
 			$this->model->update(["v"=>$v]," && `ID` = '".$r['ID']."' ",null,null);
+
+			/* addCommentBtn listener*/
+			$this->add_comment();
 		}else{
 			$this->data["title"] = s("p404");
 			$this->data["bread"] = Bread::create( [str("blogs")=>"blogs", $this->data["title"]=>"#"], null );
 
 			$this->getView()->template("p404",$this->data);
+
+
 		}
 
 	}
+
+
+	/**
+	* add_comment
+	* @type mixed
+	*/
+	private function add_comment($param=null){
+		if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
+		{
+			extract($_POST);
+			$newPass = Clean::sqlInjection($pass);
+			$reset_string = Clean::sqlInjection($reset_string);
+			pa();
+
+			die();
+		}
+
+	}
+
 
 
 }

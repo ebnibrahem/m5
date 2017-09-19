@@ -191,7 +191,7 @@ class Cp extends BaseController
 		$sqlAll = "SELECT id FROM audience";
 		$all = $this->model->TOTAL($sqlAll);
 
-		$sql= "SELECT ip,country,count(country) AS count FROM audience GROUP BY country ";
+		$sql= "SELECT ip,country,count(country) AS count FROM audience GROUP BY country ORDER BY count DESC ";
 		$retrun = $this->model->fetchAll($sql);
 		$this->request->analysis_traffic = $retrun;
 		$this->request->analysis_traffic_all = $all;

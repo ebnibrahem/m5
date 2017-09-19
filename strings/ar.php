@@ -1,18 +1,25 @@
 <?php
 
-$GLOBALS['the'] = "ال";
+/*Admin*/
 
+$GLOBALS['the'] = "ال";
 $GLOBALS['password_changed'] = "تم تغيير كلمة المرور!";
+$GLOBALS['backup'] = "نسخ احتياطي";
+
 
 $GLOBALS['reasign_admin_ttl'] = "تغيير كلمة مرور مدير الموقع";
-$GLOBALS['forget_msg_success'] = "check your email to complete foregt opretion";
-$GLOBALS['forget_msg_fail'] = "this email not belong to system manager";
+$GLOBALS['forget_msg_success'] = "تم ارسال رابط اعادة التعيين الى بريدك الالكتروني";
+$GLOBALS['forget_msg_fail'] = "الايميل الذي ادخلته لايعود لاي مدير في النظام";
 
 $GLOBALS['new_password'] = "كلمة مرور جديدة";
 
 $GLOBALS['add_success'] = "تم الاضافة بنجاح";
 $GLOBALS['update_success'] = "تم التعديل بنجاح";
 $GLOBALS['delete_success'] = "تم الحذف";
+
+// $GLOBALS['error_repeat_x'] = ":_x موجود بالفعل";
+$GLOBALS['its_repeated'] = " موجود بالفعل";
+$GLOBALS['input_error'] = "خطأ في طريقة ادخال البيانات. قد تكون هنالك حقول اجبارية لم تدخلها";
 
 
 $GLOBALS['access_denied'] = "ليس لديك صلاحيات كافية للقيام بهذا الاجراء ";
@@ -241,3 +248,8 @@ $GLOBALS['cves'] = " السير";
 $GLOBALS['old_password'] = "كلمة المرور القديمة";
 
 $GLOBALS['loadmore'] = "عرض المزيد";
+$GLOBALS['security'] = "الحماية";
+$GLOBALS['customize'] = "تخصيص";
+$GLOBALS['authers'] = "الكتاب";
+$GLOBALS['auther'] = "الكاتب";
+$GLOBALS['images'] = "صور";

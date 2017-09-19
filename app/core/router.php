@@ -91,7 +91,7 @@ class Router
 		return self::$Directory;
 	}
 
-	public static function getController($dir=''){
+	public static function getController($with_dir=false){
 		$if_contoroller_inside_dir = (self::$Directory == "/") ? "" : self::$Directory."/";
 		return $with_dir ? $if_contoroller_inside_dir.self::$controller :self::$controller;
 	}

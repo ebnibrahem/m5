@@ -33,6 +33,7 @@ define("LANG_FILE", ROOT.'strings/');
 
 define("_PATH",     ROOT.'assets/');
 define("UPLOAD_DIR",ROOT.'upload/');
+define("BACKUP_DIR",ROOT.'backup/');
 define("_WID",      V_PATH.'widgets/');
 
 
@@ -66,6 +67,9 @@ define('NO_IMG',    ASSETS.('images/no_image.png') );
 ###############################
 	if( !file_exists(UPLOAD_DIR) )
 		mkdir(UPLOAD_DIR);
+
+	if( !file_exists(BACKUP_DIR) )
+		mkdir(BACKUP_DIR);
 
 	if( !file_exists(UPLOAD_DIR.'records') )
 		mkdir(UPLOAD_DIR.'records');

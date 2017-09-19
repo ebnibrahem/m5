@@ -23,8 +23,8 @@
 		$this->getShared();
 	}
 
-	public function getView(){
-		return self::$view;
+	public function getView($flag=false){
+		return !$flag ?self::$view : null;
 	}
 
 	/**

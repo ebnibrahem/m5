@@ -1,4 +1,5 @@
 <?php use M5\Library\Page; ?>
+<?php use M5\Library\Session; ?>
 
 <div id="content">
 	<?php //pa( $this ); ?>
@@ -72,12 +73,18 @@
 				</content>
 			</section>
 
-
-
 			<div class="form-group">
 				<label for=""><?= string("content")?></label>
 				<textarea name="content" id="" cols="30" rows="10" class="textarea"></textarea>
 			</div>
+
+			<section class="row">
+				<content class="col-md-6">
+					<div class="form-group">
+						<textarea name="tags" rows="6" placeholder="<?= string('tags')?> "><?= Session::get("new_record_post")['tags'] ?></textarea>
+					</div>
+				</content>
+			</section>
 
 			<h5>
 				<input type="radio" name="page" id="page1" value="<?=page::url();?>"  checked >  <label class="hand" for="page1"><?= str("add")?></label>
@@ -128,7 +135,13 @@
 					<textarea name="content" id="" cols="30" rows="10" class="textarea"><?= $record["content"]?></textarea>
 				</div>
 
-
+				<section class="row">
+					<content class="col-md-6">
+						<div class="form-group">
+							<textarea name="tags" rows="6" placeholder="<?= string('tags')?> "><?= $record['tags'] ?></textarea>
+						</div>
+					</content>
+				</section>
 
 				<h5>
 					<input type="radio" name="page" id="page1" value="<?=page::url();?>"  checked >  <label class="hand" for="page1"><?= str("update")?></label>

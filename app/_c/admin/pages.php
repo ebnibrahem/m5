@@ -129,6 +129,7 @@ class Pages extends BaseController
 			"slug"=>$slug,
 			"content"=>$content,
 			"st"=>$st,
+			"tags"=>$tags,
 
 			];
 			if($this->model->insert($args))
@@ -165,6 +166,7 @@ class Pages extends BaseController
 			"name"=>$name,
 			"slug"=>$slug,
 			"content"=>$content,
+			"tags"=>$tags,
 			"st"=>$st,
 			];
 

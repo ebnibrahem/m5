@@ -169,6 +169,7 @@ public function fetch(array $args = [] ){
     $offset = !$page[1] ? '30' : $page[1] ;
     $start_from = ($count == "0") ? "0" : ($count-1)*$offset;
     $offsetAll = !$offsetAll ? false : $offsetAll;
+    $fetch_type = !$fetch_type ? "array" : $fetch_type;
 
     $sqlAll = self::$sql;
 
@@ -183,8 +184,14 @@ public function fetch(array $args = [] ){
     self::$sql   = $sql;
 
     if($q){
-        while ($row = $q->fetch_assoc() ) {
-            $r['data'][] = $row;
+        if($fetch_type == "array"){
+            while ($row = $q->fetch_assoc() ) {
+                $r['data'][] = $row;
+            }
+        }else{
+            while ($row = $q->fetch_object() ) {
+                $r['data'][] = $row;
+            }
         }
 
         $r['meta']['total'] = $total;

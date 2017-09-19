@@ -8,6 +8,7 @@ use M5\Library\Up;
 use M5\Library\Session;
 use M5\Library\Clean;
 use M5\Library\Lens;
+use M5\Library\Auth;
 
 use M5\Models\Files_Model;
 
@@ -75,6 +76,10 @@ class Files extends BaseController
 	 */
 	private function add()
 	{
+		/*Authentication*/
+		$roles = Session::get("roles");
+		Auth::valid($roles,[1]);
+
 		if( !file_exists(Files::FILES_PATH) )
 			mkdir(Files::FILES_PATH,0777,TRUE);
 
@@ -106,6 +111,10 @@ class Files extends BaseController
 	 */
 	public function delete()
 	{
+		/*Authentication*/
+		$roles = Session::get("roles");
+		Auth::valid($roles,[3]);
+
 		$fileName = clean::sqlInjection($_GET['file']);
 
 		$file = FILES::FILES_PATH."/".$fileName;

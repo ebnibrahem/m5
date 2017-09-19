@@ -475,7 +475,36 @@
             $("#"+child_flag).removeClass('label-info')
             $("#"+child_flag).removeClass('label')
             $("#"+child_flag).html(e)
-            console.log(e)
+            // console.log(e)
+        })
+
+    });
+
+     /** Dynamic list: Get child of current tag
+     * pass data as json object: data-ajax='{"val":<?= $part['ID'] ?>,"result_tag":"result_tag"}'
+     */
+     $(".dom_pc").bind("click hover", function() {
+
+        var dom =  $(this).data('ajax');
+
+        var
+        url = $("body").data("url")+"forms/select_pc",
+        cond = $("#loadmore").data("cond"),
+        parent = dom.val,
+        result_tag = dom.result_tag;
+        fetch_flag = !$(this).data("fetch_flag") ? 'db' : $(this).data("fetch_flag");
+
+        $("#"+result_tag).html('<div class="fa fa-spinner fa-spin"></div>')
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: {partent_value:parent, tbl:'tree', fetch_flag:fetch_flag, tag:"li"  },
+        })
+        .done(function(e) {
+            $("#"+result_tag).removeClass('label-info')
+            $("#"+result_tag).removeClass('label')
+            $("#"+result_tag).html(e)
+            // console.log(e)
         })
 
     });
@@ -488,7 +517,7 @@
         child_flag = $(this).data("child_flag"),
         fetch_flag = $(this).data("fetch_flag");
 
-        // $("#"+child_flag).html('<div class="fa fa-spinner fa-spin"></div>')
+        $("#"+child_flag).html('<div class="fa fa-spinner fa-spin"></div>'+fetch_flag)
 
     });
 
@@ -559,6 +588,38 @@
         });
 
     })
+
+     /* horizontal tabs*/
+     $(".tabs_item").click(function(event) {
+
+        var current_url =$("body").data("url")+$("body").data('pageflag');
+        var tab = $(this).data('tab');
+
+        history.pushState('', '', current_url+"?tab="+tab);
+
+        /* Highlighting*/
+        $(".tabs_item").removeClass('b_gray');
+        $(this).addClass('b_gray');
+
+        $(".tabContent").addClass("hide");
+
+        var selected_tab = "#"+tab;
+        $(selected_tab).removeClass("hide");
+
+    });
+
+     /* add class after time */
+     $(".addClassAfter").each(function() {
+
+        var t = $(this).data('time');
+        var style =  $(this).data('class');
+
+        $(this).delay(t).queue(function () {
+            $(this).addClass(style);
+        });
+
+
+    });
 
 
 

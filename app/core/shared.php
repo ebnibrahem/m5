@@ -36,9 +36,17 @@ class Shared
 		define('site_tel', $Application['tel']);
 		define('site_description', $Application['description']);
 
+		$this->data['application'] = $Application;
+
 		/* Catetogries parent */
 		$tree = new \M5\Models\Tree_Model('','',__METHOD__);
-		$categories = $tree->parents(0,0);
+		$categories = $tree->parents('part',0);
+
+		if($categories){
+			foreach ($categories as $key => $cat) {
+				$categories[$key]['total'] = $tree->num_rows("blogs","  && part_id ='".$cat['ID']."' ",0);
+			}
+		}
 
 		$this->data['categories'] = $categories;
 
@@ -55,6 +63,9 @@ class Shared
 		$this->data['bg'] = $this->model->getPref("bg");
 		$this->data['main_color'] = $this->model->getPref("main_color");
 
+		/*notification*/
+		$notification = $this->model->num_rows("notifications"," && ( user_id = 'admin' && st = '1') ");
+		$this->data['alert_admin'] = $notification;
 
 		return null;
 	}

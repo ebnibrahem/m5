@@ -6,10 +6,12 @@ class Users_Model extends BaseModel
 {
 	private $tbl = "users";
 
-	function __construct($tbl='')
+	function __construct($tbl='',$se='',$target='')
 	{
-		// $this->model = BaseModel::getInst($this->tbl);
-		parent::getInst($this->tbl);
+		$tbl = !$tbl ? $this->tbl : $tbl ;
+		$target = !$target ? __METHOD__ : $target ;
+
+		parent::getInst($tbl,$se,$target);
 	}
 
 	/**
@@ -38,13 +40,14 @@ class Users_Model extends BaseModel
 		return $r;
 	}
 
-	public function _one($id)
+	public function _one($id='',$cond='')
 	{
-		$this->set("one", "first");
-		$this->set("cond", "&& ".$this->tbl.".ID = '$id'");
-		$r = $this->_all();
 
-		$this_folder = 'upload/blogs/'.$r['BETA'].'/';
+		$cond = !$id ? $cond : "&& ".$this->tbl.".ID = '$id'";
+		$this->set("cond", $cond);
+
+		$this->set("one", "first");
+		$r = $this->_all();
 
 		return $r;
 

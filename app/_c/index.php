@@ -19,21 +19,9 @@ class Index extends BaseController
 	{
 		parent::__construct();
 
-		self::$login = Model::getInst($this->tbl);
-
-		$this->request->action = "index";
-		$this->request->header_string = "home";
-
-
 		/*breadcrumb*/
 		$this->data["title"] = site_name ." | ".str($this->class_label);
 		$this->data["bread"] = Bread::create( [$this->data["title"]=>"#"] );
-
-		$subj = "Test SMTP";
-		$reciver = "ebnibrahem@gmail.com";
-		$sender = mail_from;
-		$msg = "<b>Test</b> STMP FROM ".IP ;
-		// \M5\Library\Email::smtp($subj, $reciver, $sender, $msg);
 
 	}
 
@@ -70,7 +58,7 @@ class Index extends BaseController
 		$page = [$_GET['page'], $offset ];
 		$sort = 'blogs.ID DESC';
 
-		$blogs = new Blogs_Model();
+		$blogs = new Blogs_Model('blogs',1);
 		$r = $blogs->_all($cond,$page,$sort);
 
 		$this->data['blogs_last'] = $r['data'];
@@ -108,7 +96,7 @@ class Index extends BaseController
 		/*minimizing css*/
 		// minimizing("style");
 
-		minimizing(["smart","style","spots","default","ltr"]);
+		// minimizing(["smart","style","default","ltr"]);
 
 		$xml = '<?xml version="1.0" encoding="utf-8"?>
 		<urlset

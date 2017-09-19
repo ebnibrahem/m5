@@ -21,7 +21,7 @@ use M5\Library\Session;
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-<body data-url="<?=url()?>" data-current_url="<?= M5\Library\Page::url() ?>" >
+<body data-url="<?=url()?>" data-current_url="<?= M5\Library\Page::url() ?>" data-pageFlag="<?= strtolower( APP::getRouter()->getController(true) );?>">
 	<?php require view() . 'widgets/cdn_js.php'; ?>
 	<script src="<?= assets('js/js2.js?' . uniqid()) ?>"></script>
 	<script src="<?= assets('js/panel.js?' . uniqid()) ?>"></script>

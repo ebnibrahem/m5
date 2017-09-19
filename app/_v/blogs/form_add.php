@@ -1,6 +1,8 @@
 <?php use M5\Library\Page; ?>
 <?php use M5\Library\Session; ?>
 
+<?php //pa(Session::get('new_record_post'))?>
+
 <form action="<?=url($this->formAction."do/add")?>" method="post" enctype="multipart/form-data">
 
 	<section class="row">
@@ -10,7 +12,7 @@
 				<input type="text" name="name" value="<?= Session::get("new_record_post")['name'] ?>" autofocus>
 			</div>
 		</content>
-		<content class="col-md-4">
+		<content class="col-md-2">
 			<div class="form-group p320">
 				<label for=""><?= string("st")?></label>
 				<select name="st">
@@ -19,27 +21,33 @@
 				</select>
 			</div>
 		</content>
-		<content class="col-md-4">
+		<content class="col-md-3">
 			<div class="form-group">
 				<?php //pa($data['categories']) ?>
+				<label for=""><?=s(['categories','home'])?></label>
 				<div class="form-group">
-					<select name="part_id" class="form-control" >
-						<option value=""><?= s(['categories','choose'],"- ")?></option>
+					<select name="part_id" class="form-control select_pc" data-child_flag="add_child_here" data-fetch_flag="<?=$part_id?>">
+						<option value=""><?= s(['choose'],"- ")?></option>
 						<?php if ($data['categories']): ?>
 							<?php foreach ($data['categories'] as $key => $categ): ?>
-								<?php $selected = (Session::get("new_record_post")['categ'] == $categ['ID']) ? 'selected' : '' ?>
+								<?php $selected = (Session::get("new_record_post")['part_id'] == $categ['ID']) ? 'selected' : '' ?>
 								<option value="<?= $categ['ID'] ?>" <?= $selected?> > <?= $categ['name'] ?> </option>
 							<?php endforeach ?>
 						<?php endif ?>
 					</select>
 					<a href="<?=url('admin/categories')?>" class="label label-info"><?=s(['categories','add_new'],"- ")?></a>
 				</div>
-
-
-				<label for=""><i class="fa fa-file small f_gray2"></i> <?= str('images') ?></label>
-				<input type="file" name="images[]"  class="form-control" multiple="multiple">
 			</div>
 		</content>
+		<content class="col-md-3">
+			<label for="">&nbsp;</label>
+			<div id="add_child_here">
+				<select name="" id="" class="form-control">
+					<option><?=s('choose')?></option>
+				</select>
+			</div>
+		</content>
+
 	</section>
 
 	<div class="form-group">
@@ -48,12 +56,20 @@
 	</div>
 
 	<section class="row">
-		<content class="col-md-6">
+		<content class="col-md-4">
+			<div class="form-group">
+				<?php //pa($data['categories']) ?>
+				<label for=""><i class="fa fa-file small f_gray2"></i> <?= str('images') ?></label>
+				<input type="file" name="images[]"  class="form-control" multiple="multiple">
+			</div>
+		</content>
+
+		<content class="col-md-4">
 			<div class="form-group">
 				<textarea name="tags" rows="6" placeholder="<?= string('tags')?> "><?= Session::get("new_record_post")['tags'] ?></textarea>
 			</div>
 		</content>
-		<content class="col-md-6">
+		<content class="col-md-4">
 			<div class="form-group">
 				<textarea name="notes" rows="6" placeholder="<?= string('description')?>"><?= Session::get("new_record_post")['notes'] ?></textarea>
 			</div>

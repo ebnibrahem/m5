@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 $GLOBALS['password_changed'] = "Password Changed!";
 
 $GLOBALS['reasign_admin_ttl'] = "Change admin password";
 $GLOBALS['forget_msg_success'] = "check your email to complete foregt opretion";
-$GLOBALS['forget_msg_fail'] = "this email not belong to system manager";
+$GLOBALS['forget_msg_fail'] = "this email not belong to any system manager user";
 
 $GLOBALS['new_password'] = "new password";
 
