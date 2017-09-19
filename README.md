@@ -60,11 +60,13 @@ __Online environment__
 - vendor   : main composer folder to all PHP dependencies and packages.
 
 #### share data between controllers and views
+- when you need database-data to used in each page e.g: footer | navbar.
 - add all shared data in M5\MVC\Shared::boot();
-- as $data[$key].
+- assign key in $data array e.g. $data["page_list"].
 
 #### Set access rule to sub-directories (Middleware)
 - add  in app/config/config.php;
+- A closure-function called first before dive in class methods.
 
 
 
