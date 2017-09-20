@@ -54,6 +54,9 @@ Set status as true to show bottom-application-status.
 
 
 ## Getstart:
+### M5 Framework Overview:
+- M5 framework consider MVC design pattern aproach which separate programming logic (PHP files) from user interface (HTML files) and isolate databse layer form others.
+
 ### File structure:
 
 - app/_c   : Controllers files.
@@ -64,8 +67,6 @@ Set status as true to show bottom-application-status.
 - upload   : upload path; you can change from app/init by edit UPLOAD_DIR Constant.
 - vendor   : main composer folder to all PHP dependencies and packages.
 
-### M5 Framework Overview:
-- M5 framework consider MVC design pattern aproach which separate programming logic (PHP files) from user interface (HTML files) and isolate databse layer form others.
 
 ### Contollers
 - all controller class file are stored in __app/_c__ and namespace M5\Controllers. Controller class name must start with Capital Letter.
