@@ -68,7 +68,7 @@ Set status as true to show bottom-application-status.
 - vendor   : main composer folder to all PHP dependencies and packages.
 
 
-### Contollers
+### Controllers
 - all controller class file are stored in __app/_c__ and namespace M5\Controllers. Controller class name must start with Capital Letter.
 - must create Class::index($params=[]) method in each controllers class.
 
