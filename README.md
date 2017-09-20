@@ -48,8 +48,6 @@ __Online environment__
 - supported Composer PHP dependencies management  prs-4 class_map.
 - GUI to create controllers, models and views.
 - Model singleton style.
-- M5\MVC\Model::getInst("tbl","show_error",__METHOD__) : to seek target of an error in App;
-- M5\MVC\App::play(["url" => $_GET['url'],"status" => true]);
 Set status as true to show bottom-application-status.
 - Design By: __Mohammed ibrahem__. ebnibrahem@gmail.com
 
@@ -67,6 +65,9 @@ Set status as true to show bottom-application-status.
 - string   : languages string. you can change from  app/config/Config.php
 - upload   : upload path; you can change from app/init by edit UPLOAD_DIR Constant.
 - vendor   : main composer folder to all PHP dependencies and packages.
+
+### index.php
+- M5\MVC\App::play(["url" => $_GET['url'],"status" => true]);
 
 
 ### Controllers
@@ -86,10 +87,11 @@ to Share data between controllers and views e.g dynamic nav pages, application i
 - M5\MVC\Model::getInst($table_name,$show_error='',____METHOD____) ____METHOD____ : to seek target of an error in App;
 
 ### Views
-
+- all views located in app/_v.
 
 ### Helper Libraies
 - M5 provide built-in classes to facilitate in achieving some routines operations e.g database schema, send email, sessions, cookies ect..
 - all classes located in libs\ directorey with namespace M5\Libray\
+
 
 .. to be contiuned ..
