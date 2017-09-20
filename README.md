@@ -1,6 +1,5 @@
 # M5
 - PHP MVC Framework used design pattern and modern approaches of reused of code and DRY (dont repeat yourself).
-- Design By: Mohammed ibrahem.
 
 ## Installation
 
@@ -52,6 +51,7 @@ __Online environment__
 - M5\MVC\Model::getInst("tbl","show_error",__METHOD__) : to seek target of an error in App;
 - M5\MVC\App::play(["url" => $_GET['url'],"status" => true]);
 Set status as true to show bottom-application-status.
+- Design By: __Mohammed ibrahem__. ebnibrahem@gmail.com
 
 
 ## Getstart:
