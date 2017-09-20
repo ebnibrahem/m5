@@ -6,15 +6,12 @@ PHP MVC Framework used design pattern and modern approaches of reused of code an
 #### Server Requirements
 - PHP >= 5.5
 - Mbstring PHP Extension
--
-#### Installing M5
+
 #### Files:
-### Files:
 1. unzip files.
 https://github.com/ebnibrahem/m5/archive/master.zip
 #### Configuration
 
-##### Database:
 ### Database:
 2. create your database and set collation as utf_general_ci.
 3. open app/config/config_db.php and edit :
@@ -25,8 +22,7 @@ __ Online__
 - Config::set("pass", 'PASS');
 - Config::set("port", null);
 
-##### SMTP
-### SMTP
+#### SMTP
 4. open app/config/config_mail.php and edit
 __Online environment__
 - define('mail_host','mail.mailserver.com');
