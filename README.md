@@ -14,7 +14,7 @@ https://github.com/ebnibrahem/m5/archive/master.zip
 ### Configuration
 
 #### Database:
-2. create your database and set collation as utf_general_ci.
+2. Open phpmyadmin and create your database and set collation as utf_general_ci.
 3. open app/config/config_db.php and edit :
 __ Online__
 - Config::set("host", 'localhost');
