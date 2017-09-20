@@ -7,7 +7,7 @@ PHP MVC Framework used design pattern and modern approaches of reused of code an
 - PHP >= 5.5
 - Mbstring PHP Extension
 
-#### Files:
+### Files:
 1. unzip files.
 https://github.com/ebnibrahem/m5/archive/master.zip
 #### Configuration
@@ -22,7 +22,7 @@ __ Online__
 - Config::set("pass", 'PASS');
 - Config::set("port", null);
 
-#### SMTP
+### SMTP
 4. open app/config/config_mail.php and edit
 __Online environment__
 - define('mail_host','mail.mailserver.com');
@@ -31,7 +31,7 @@ __Online environment__
 - define('mail_from','info@mail.com');
 - define('mail_port',25);
 
-##### Run Once:
+#### Run Once:
 5. open url: http://your_url/set  [To migrate database schema tables.]
 ### Setup:
 5. open url: http:\\your_url\set  [To migrate database schema tables.]
