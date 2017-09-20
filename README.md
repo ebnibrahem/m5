@@ -3,7 +3,7 @@ PHP MVC Framework used design pattern and modern approaches of reused of code an
 
 ## Installation
 
-#### Server Requirements
+### Server Requirements
 - PHP >= 5.5
 - Mbstring PHP Extension
 
