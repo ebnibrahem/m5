@@ -54,7 +54,7 @@ Set status as true to show bottom-application-status.
 
 
 ## Getstart:
-## File structure:
+### File structure:
 
 - app/_c   : Controllers files.
 - app/_m   : Models files.
@@ -64,7 +64,7 @@ Set status as true to show bottom-application-status.
 - upload   : upload path; you can change from app/init by edit UPLOAD_DIR Constant.
 - vendor   : main composer folder to all PHP dependencies and packages.
 
-## M5 Framework Overview:
+### M5 Framework Overview:
 - M5 framework consider MVC design pattern aproach which separate programming logic (PHP files) from user interface (HTML files) and isolate databse layer form others.
 
 ### Contollers
