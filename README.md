@@ -46,7 +46,6 @@ __Online environment__
 - Multi-languages.
 - supported Automatic routing and routes rules.
 - supported Composer PHP dependencies management  prs-4 class_map.
-- supported Composer PHP dependencies management.
 - GUI to create controllers, models and views.
 - Model singleton style.
 - M5\MVC\Model::getInst("tbl","show_error",__METHOD__) : to seek target of an error in App;
