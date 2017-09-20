@@ -1,5 +1,6 @@
 # M5
-PHP MVC Framework used design pattern and modern approaches of reused of code and DRY (dont repeat yourself).
+- PHP MVC Framework used design pattern and modern approaches of reused of code and DRY (dont repeat yourself).
+- Design By: Mohammed ibrahem.
 
 ## Installation
 
