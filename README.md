@@ -88,7 +88,7 @@ to Share data between controllers and views e.g dynamic nav pages, application i
 
 
 ### Helper Libraies
-- M5 provide bulit-in classes to facilate in achiving some routines opration e.g database schema, send email, sessions, cookies ect..
+- M5 provide built-in classes to facilitate in achieving some routines operations e.g database schema, send email, sessions, cookies ect..
 - all classes located in libs\ directorey with namespace M5\Libray\
 
 .. to be contiuned ..
