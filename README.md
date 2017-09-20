@@ -55,7 +55,7 @@ Set status as true to show bottom-application-status.
 
 ## Getstart:
 ### M5 Framework Overview:
-- M5 framework consider MVC design pattern aproach which separate programming logic (PHP files) from user interface (HTML files) and isolate databse layer form others.
+- M5 framework consider MVC design pattern aproach  which separate programming logic (PHP files) from user interface (HTML files) and isolate databse layer form others.
 
 ### File structure:
 
