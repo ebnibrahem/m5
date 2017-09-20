@@ -72,18 +72,18 @@ Set status as true to show bottom-application-status.
 - all controller class file are stored in __app/_c__ and namespace M5\Controllers. Controller class name must start with Capital Letter.
 - must create Class::index($params=[]) method in each controllers class.
 
-### share data between controllers and views
+#### share data between controllers and views
 to Share data between controllers and views e.g dynamic nav pages, application information etc.
 - add all shared data in M5\MVC\Shared::boot();
 - as $data[$key].
 
-## Models
+### Models
 - M5 Model used concept of singleton pattern, to create instant from Model :
 - M5\MVC\Model::getInst($table_name,$show_error='',____METHOD____) ____METHOD____ : to seek target of an error in App;
 
-## Views
+### Views
 
-### Middleware ( Set access rule to sub-directories )
+#### Middleware ( Set access rule to sub-directories )
 - add  in app/config/config.php;
 
 ### Helper Libraies
