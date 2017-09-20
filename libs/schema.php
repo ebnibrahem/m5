@@ -173,6 +173,7 @@ class Schema {
 
 		$sql = "SHOW CREATE TABLE $tbl ";
 		$create_tbl = $DB->fetchOne($sql);
+		$create_tbl = str_replace(" CREATE ", "CREATE TBLAE IF NOT EXISTS	", $create_tbl);
 
 		// pa($create_tbl);
 		// $vars = self::fields($tbl,",");
