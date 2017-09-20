@@ -48,7 +48,7 @@ __Online environment__
 - supported Composer PHP dependencies management  prs-4 class_map.
 - GUI to create controllers, models and views.
 - Model singleton style.
-Set status as true to show bottom-application-status.
+- Provide A brief report about all application files status.
 - Design By: __Mohammed ibrahem__. ebnibrahem@gmail.com
 
 
