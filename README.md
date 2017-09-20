@@ -36,9 +36,7 @@ __Online environment__
 - to make empty database.
 5. open url: http://your_url/set  [To migrate database schema tables.]
 
-5. open url: http:\\your_url\set  [To migrate database schema tables.]
 6. Next after delete file : app/_c/set.php
-7. admin area : http://your_url/admin
 7. admin area : http:\\your_url\admin
 - default user: admin
 - default pass: 1234
