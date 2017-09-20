@@ -33,9 +33,9 @@ __Online environment__
 - define('mail_port',25);
 
 #### Run Once:
+- to make empty database.
 5. open url: http://your_url/set  [To migrate database schema tables.]
 
-#### Setup:
 5. open url: http:\\your_url\set  [To migrate database schema tables.]
 6. Next after delete file : app/_c/set.php
 7. admin area : http://your_url/admin
