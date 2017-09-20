@@ -77,14 +77,15 @@ to Share data between controllers and views e.g dynamic nav pages, application i
 - add all shared data in M5\MVC\Shared::boot();
 - as $data[$key].
 
+#### Middleware ( Set access rule to contoller in inside (___c__) directory )
+- add  in app/config/config.php;
+
 ### Models
 - M5 Model used concept of singleton pattern, to create instant from Model :
 - M5\MVC\Model::getInst($table_name,$show_error='',____METHOD____) ____METHOD____ : to seek target of an error in App;
 
 ### Views
 
-#### Middleware ( Set access rule to sub-directories )
-- add  in app/config/config.php;
 
 ### Helper Libraies
 - M5 provide bulit-in classes to facilate in achiving some routines opration e.g database schema, send email, sessions, cookies ect..
