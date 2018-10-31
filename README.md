@@ -68,7 +68,7 @@ __Online environment__
 
 ### index.php
 - M5\MVC\App::play(["url" => $_GET['url'],"status" => true]);
-
+- status accept ture|false to show application status in bottom.
 
 ### Controllers
 - all controller class file are stored in __app/_c__ and namespace M5\Controllers. Controller class name must start with Capital Letter.
@@ -88,10 +88,11 @@ to Share data between controllers and views e.g dynamic nav pages, application i
 
 ### Views
 - all views located in app/_v.
+- no view engine used you can sperate your template in: widgets/header.php, widgets/footer.php
 
 ### Helper Libraies
 - M5 provide built-in classes to facilitate in achieving some routines operations e.g database schema, send email, sessions, cookies ect..
 - all classes located in libs\ directorey with namespace M5\Libray\
+#### in libs\functions.php  your found more helpers.
 
-
-.. to be contiuned ..
+###.. to be contiuned .. ###
