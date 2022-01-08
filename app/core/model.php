@@ -1,4 +1,4 @@
-<?php namespace M5\MVC;
+<?php namespace M5\Library;
 
 /**
 * Basic Model
@@ -25,88 +25,88 @@ class Model
 
     public static $cls;
 
-/**
-* Singleton Approach
-*
-* @return  Object
-*/
-public static function getInst($tbl='',$show_error=false,$target=false)
-{
-    self::$tbl = $tbl;
-
-    if(!isset(self::$inst))
+    /**
+    * Singleton Approach
+    *
+    * @return  Object
+    */
+    public static function getInst($tbl='',$show_error=false,$target=false)
     {
-        $class = static::class; /* to multi use of model >> with child class name not (Model)*/
-        self::$cls = $tbl;
-        self::$inst = new $class($show_error);
+        self::$tbl = $tbl;
+
+        if(!isset(self::$inst))
+        {
+            $class = static::class; /* to multi use of model >> with child class name not (Model)*/
+            self::$cls = $tbl;
+            self::$inst = new $class($show_error);
+        }
+
+        self::$show_error =  $show_error ;
+        self::$target     =  $target ;
+
+        return self::$inst;
     }
 
-    self::$show_error =  $show_error ;
-    self::$target     =  $target ;
+    /**
+    * Connect To Database
+    *
+    */
+    private function __construct()
+    {
+        $db['host']       =  Config::get("host");
+        $db['user']       =  Config::get("user");
+        $db['pass']       =  Config::get("pass");
+        $db['db_name']    =  Config::get("db_name");
+        $db['port']       =  Config::get("port");
 
-    return self::$inst;
-}
+        extract($db);
 
-/**
-* Connect To Database
-*
-*/
-private function __construct()
-{
-    $db['host']       =  Config::get("host");
-    $db['user']       =  Config::get("user");
-    $db['pass']       =  Config::get("pass");
-    $db['db_name']    =  Config::get("db_name");
-    $db['port']       =  Config::get("port");
+        @self::$DB = new \MySQLi($host, $user, $pass, $db_name, $port);
+        @self::$DB->set_charset("utf8");
 
-    extract($db);
-
-    @self::$DB = new \MySQLi($host, $user, $pass, $db_name, $port);
-    @self::$DB->set_charset("utf8");
-
-    if(self::$DB->connect_error){
-        /*/ trigger_error(self::$DB->connect_error,E_USER_ERROR); //set as php runtime error.*/
-        die( pre('<h2> :( '.self::$DB->connect_error.'</h2>','center','','#DD3333') );
+        if(self::$DB->connect_error){
+            /*/ trigger_error(self::$DB->connect_error,E_USER_ERROR); //set as php runtime error.*/
+            die( pre('<h2> :( '.self::$DB->connect_error.'</h2>','center','','#DD3333') );
+        }
     }
-}
 
-/**
-* Show errors if occurred
-*
-*/
-public function getError(){
+    /**
+    * Show errors if occurred
+    *
+    */
+    public function getError(){
 
     // ve("show_error = ".self::$show_error);
 
-    if(self::$show_error){
+        if(self::$show_error){
 
-        echo "<pre dir='ltr'>";
-        if(self::$db_error){
-            foreach (self::$db_error as $key => $error) {
-                pre("<b>- DB</b>: ".__METHOD__."[  ".self::$target." ] <u>".$error."</u>",'left','ltr','#F33000');
+            echo "<pre dir='ltr'>";
+            if(self::$db_error){
+                foreach (self::$db_error as $key => $error) {
+                    pre("<b>- DB</b>: ".__METHOD__."[  ".self::$target." ] <u>".$error."</u>",'left','ltr','#F33000');
              // trigger_error(self::$target." ".$error) ; //set as php runtime error.
+                }
+            }else{
+                echo "no Errors";
             }
-        }else{
-            echo "no Errors";
+            echo "</pre>";
         }
-        echo "</pre>";
     }
-}
 
 
-/**
-* Select From table ['tbl'=>tab_name]
-*
-* @param tbl String  associative array row;
-*/
-public function table(array $args = [] ){
-    $tbl = !$args['tbl'] ? self::$tbl : $args['tbl'];
-    $fld = !$args['fld'] ? "*" : $args['fld'];
+    /**
+    * Select From table ['tbl'=>tab_name]
+    *
+    * @param tbl String  associative array row;
+    */
+    public function table(array $args = [] ){
+        $tbl = !$args['tbl'] ? self::$tbl : $args['tbl'];
+        $fld = !$args['fld'] ? "*" : $args['fld'];
 
-    self::$sql = "SELECT $fld FROM $tbl WHERE 1 ";
+        self::$sql = "SELECT $fld FROM $tbl WHERE 1 ";
 
-    return $this;
-}
+        return $this;
+    }
 
 /**
 * @param  string $cond e.g " && 1=1" | " 1=1 " .

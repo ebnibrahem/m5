@@ -185,7 +185,7 @@ class App
 		if(!method_exists($controller, $method)){
 			self::$notes[] = "<td style='color:#Ff9900'>Method</td><td style='color:#Ff9900'>Oops! <u>".$class."::".$method."()"."</u> Method not found</td>";
 			return [
-			"st" => "method_not_found",
+				"st" => "method_not_found",
 			];
 		}else{
 			if($params[2]){

@@ -67,14 +67,14 @@ class Router
 		/* Specified Methods */
 		$method = !$url_parts[0] ? Config::get("default_method") :$url_parts[0];
 		self::$method = strtolower($method);
+		// pa($url_parts, '0', '#299'); 
 
 		$url_parts[0] ? array_shift($url_parts) : '' ;
-
-
 		/* Specified parameters */
-		$params =  !$url_parts[0] ? '' :$url_parts;
+		$params =  $url_parts;
+		// pa($params, '0', '#299'); 
 
-		self::$params = $params;
+		Self::$params = $params;
 
 	}
 
