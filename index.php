@@ -4,8 +4,8 @@ require_once 'app/init.php';
 $url = $_GET['url'];
 
 $app_args = [
-"url"    => $url,
-"status" => 0,
+   "url"    => $url,
+   "status" => 1,
 ];
 
 /*Runing Application*/
